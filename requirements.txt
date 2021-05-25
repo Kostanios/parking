@@ -1,0 +1,17 @@
+cython
+setuptools
+numpy>=1.16.*
+imgaug>=0.4.*
+tensorflow>=2.3.*
+opencv_python
+scikit_image
+asyncio
+gitpython
+pycocotools
+tqdm
+matplotlib
+torch>=1.8
+torchvision>=0.9
+PyYAML>=5.4
+seaborn
+git+git://github.com/lilohuang/PyTurboJPEG.git
