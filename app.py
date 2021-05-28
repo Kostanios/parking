@@ -46,27 +46,21 @@ img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 capture = cv2.VideoCapture('public/video/1.mp4')
 previosCars = []
 
-def searchMachine (previosCars):
-    newCars = get_nomer(frame, detector=detector, npPointsCraft=npPointsCraft, optionsDetector=optionsDetector, textDetector=textDetector)
-    if (newCars == None):
-        newCars = []
-
-    for previosCar in previosCars:
-        if (previosCar not in newCars) & (len(previosCar) > 6):
-            print('машина '+previosCar+'!')
-            start_new_thread(pushNomer, (previosCar, datetime.date.today(), datetime.datetime.now().time(), ))
-            
-        else:
-            print('машина не распознана')
-
-    previosCars = newCars
-
 while True:
     isTrue, frame = capture.read()
     cv2.imshow('video', frame)
+    newCars = get_nomer(frame, detector=detector, npPointsCraft=npPointsCraft, optionsDetector=optionsDetector, textDetector=textDetector)
+    if (newCars == None):
+        newCars = []
+    for previosCar in previosCars:
+        if (previosCar not in newCars) & (len(previosCar) > 6):
+            print('машина '+previosCar+'!')
+            start_new_thread(pushNomer, (previosCar, ))
+            
+        else:
+            print('машина '+previosCar+' не распознана')
 
-    searchMachine(previosCars)
-
+    previosCars = newCars
     if cv2.waitKey(20) & 0xFF == ord('d'):
         break
 

@@ -6,7 +6,7 @@ def get_nomer (img, detector, npPointsCraft, optionsDetector, textDetector):
   targetBoxes = detector.detect_bbox(img)
 
   if len(targetBoxes) == 0:
-    print("машин нет!")
+    print("машин нет")
     return
   all_points = npPointsCraft.detect(img, targetBoxes,[5,2,0])
   # cut zones
